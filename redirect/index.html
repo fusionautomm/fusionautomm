@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Redirecting to UPI Payment</title>
+    <script type="text/javascript">
+        // Function to get URL parameters
+        function getQueryParam(param) {
+            var params = new URLSearchParams(window.location.search);
+            return params.get(param);
+        }
+
+        // Perform the redirect
+        window.onload = function() {
+            var upiLink = getQueryParam("to");
+            if(upiLink) {
+                // Decode the UPI link in case it's encoded
+                var decodedLink = decodeURIComponent(upiLink);
+                // Redirect to the UPI link
+                window.location.href = decodedLink;
+            } else {
+                document.body.innerHTML = 'Invalid or missing UPI link. Please check the link and try again.';
+            }
+        };
+    </script>
+</head>
+<body>
+    <p>Redirecting to UPI payment...</p>
+</body>
+</html>
